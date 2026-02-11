@@ -218,25 +218,46 @@ export default function PawblemMedicApp() {
           </>
         )
       },
-      'emergency': {
-        title: 'Emergency Certified',
-        content: (
-          <>
-            <p className="text-base mb-4" style={{ color: colors.charcoalInk }}>
-              This provider holds verified emergency response training, including:
-            </p>
-            <ul className="space-y-2 mb-4">
-              <li className="text-base" style={{ color: colors.charcoalInk }}>• Pet CPR</li>
-              <li className="text-base" style={{ color: colors.charcoalInk }}>• Basic first aid</li>
-              <li className="text-base" style={{ color: colors.charcoalInk }}>• Bandaging and stabilization</li>
-              <li className="text-base" style={{ color: colors.charcoalInk }}>• Immediate response protocols</li>
-            </ul>
-            <p className="text-sm italic" style={{ color: colors.antiquCopper }}>
-              Emergency certification enables rapid stabilization and escalation. It does not replace veterinary medical care.
-            </p>
-          </>
-        )
-      }
+     'er': {
+  title: 'ER Certified',
+  content: (
+    <>
+      <p className="text-sm mb-1" style={{ color: colors.antiquCopper }}>
+        (Emergency Response Certified)
+      </p>
+
+      <p className="text-base mb-4" style={{ color: colors.charcoalInk }}>
+        This provider has completed verified emergency response training for high-risk post-operative scenarios.
+      </p>
+
+      <p className="text-sm font-medium mb-3" style={{ color: colors.deepTerracotta }}>
+        Includes:
+      </p>
+      <ul className="space-y-2 mb-6">
+        <li className="text-base" style={{ color: colors.charcoalInk }}>• Pet CPR</li>
+        <li className="text-base" style={{ color: colors.charcoalInk }}>• First Aid &amp; Stabilization</li>
+        <li className="text-base" style={{ color: colors.charcoalInk }}>• Wound bandaging</li>
+        <li className="text-base" style={{ color: colors.charcoalInk }}>• Choking response</li>
+        <li className="text-base" style={{ color: colors.charcoalInk }}>• Seizure response protocol</li>
+        <li className="text-base" style={{ color: colors.charcoalInk }}>• Safe emergency transport handling</li>
+      </ul>
+
+      <p className="text-sm font-medium mb-3" style={{ color: colors.deepTerracotta }}>
+        Recognized Training Sources:
+      </p>
+      <ul className="space-y-2 mb-6">
+        <li className="text-base" style={{ color: colors.charcoalInk }}>• Red Cross Pet CPR &amp; First Aid</li>
+        <li className="text-base" style={{ color: colors.charcoalInk }}>• PetTech Certification</li>
+        <li className="text-base" style={{ color: colors.charcoalInk }}>• Fear Free Handling Training</li>
+        <li className="text-base" style={{ color: colors.charcoalInk }}>• Behavioral Safety Training</li>
+      </ul>
+
+      <p className="text-sm italic" style={{ color: colors.antiquCopper }}>
+        ER Certified providers are trained to stabilize and escalate. They do not diagnose or replace veterinary medical care.
+      </p>
+    </>
+  )
+}
     };
 
     if (!certificationModal) return null;
