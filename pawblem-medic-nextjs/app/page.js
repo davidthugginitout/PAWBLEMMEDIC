@@ -179,7 +179,7 @@ const providerList = [
   {
     name: 'Dr. James Chen',
     bio: '12 years post-op care, specialized in surgical recovery',
-    badges: ['post-op', 'audit'],
+    badges: ['post-op', 'audit', 'er'],
   },
   {
     name: 'Maria Rodriguez, CVT',
