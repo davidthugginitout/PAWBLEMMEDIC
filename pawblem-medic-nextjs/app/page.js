@@ -299,27 +299,33 @@ const providerList = [
   };
 
   // Provider Detail Modal
-  const ProviderDetailModal = () => {
+// Provider Detail Modal
+const ProviderDetailModal = () => {
   if (!selectedProvider) return null;
 
   return (
     <Modal isOpen={showProviderModal} onClose={() => setShowProviderModal(false)}>
-      <h2 className="text-3xl font-bold mb-4" style={{ color: colors.charcoalInk, fontFamily: "'Inter', sans-serif" }}>
+      <h2
+        className="text-3xl font-bold mb-4"
+        style={{ color: colors.charcoalInk, fontFamily: "'Inter', sans-serif" }}
+      >
         {selectedProvider.name}
       </h2>
 
       <div className="mb-6">
-        {selectedProvider.badges.includes('post-op') && (
+        {selectedProvider.badges?.includes('post-op') && (
           <Badge onClick={() => { setShowProviderModal(false); setCertificationModal('post-op'); }}>
             Post-Op Certified
           </Badge>
         )}
-        {selectedProvider.badges.includes('audit') && (
+
+        {selectedProvider.badges?.includes('audit') && (
           <Badge variant="secondary" onClick={() => { setShowProviderModal(false); setCertificationModal('audit'); }}>
             Audit-Enabled
           </Badge>
         )}
-        {selectedProvider.badges.includes('er') && (
+
+        {selectedProvider.badges?.includes('er') && (
           <Badge variant="secondary" onClick={() => { setShowProviderModal(false); setCertificationModal('er'); }}>
             ER Certified
           </Badge>
@@ -344,48 +350,7 @@ const providerList = [
     </Modal>
   );
 };
-    <Modal isOpen={showProviderModal} onClose={() => setShowProviderModal(false)}>
-      <h2 className="text-3xl font-bold mb-4" style={{ color: colors.charcoalInk, fontFamily: "'Inter', sans-serif" }}>
-        Sarah Mitchell, RVT
-      </h2>
-      
-      <div className="mb-6">
-        <Badge onClick={() => { setShowProviderModal(false); setCertificationModal('post-op'); }}>
-          Post-Op Certified
-        </Badge>
-        <Badge variant="secondary" onClick={() => { setShowProviderModal(false); setCertificationModal('audit'); }}>
-          Audit-Enabled
-        </Badge>
-        <Badge variant="secondary" onClick={() => { setShowProviderModal(false); setCertificationModal('er'); }}>
-          ER Certified
-        </Badge>
-      </div>
 
-      <div className="mb-6">
-        <p className="text-sm font-medium mb-2" style={{ color: colors.antiquCopper }}>Experience</p>
-        <p className="text-base mb-3" style={{ color: colors.charcoalInk }}>
-          8 years veterinary nursing
-        </p>
-        <p className="text-base mb-3" style={{ color: colors.charcoalInk }}>
-          Specialized in orthopedic recovery
-        </p>
-        <p className="text-base" style={{ color: colors.charcoalInk }}>
-          120+ successful post-op cases
-        </p>
-      </div>
-
-      <div className="mb-8">
-        <p className="text-sm font-medium mb-2" style={{ color: colors.antiquCopper }}>Availability</p>
-        <p className="text-base" style={{ color: colors.charcoalInk }}>
-          Morning & Afternoon slots this week
-        </p>
-      </div>
-
-      <PrimaryButton onClick={() => { setSelectedProvider('Sarah Mitchell, RVT'); setShowProviderModal(false); setScreen('case-confirmation'); }}>
-        Select Provider
-      </PrimaryButton>
-    </Modal>
-  );
 
   // Splash Screen
   if (screen === 'splash') {
