@@ -282,6 +282,7 @@ const providerList = [
     if (!certificationModal) return null;
 
     const cert = certifications[certificationModal];
+    if (!cert) return null;
 
     return (
       <Modal isOpen={!!certificationModal} onClose={() => setCertificationModal(null)}>
