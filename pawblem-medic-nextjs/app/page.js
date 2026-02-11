@@ -726,7 +726,7 @@ if (screen === 'pricing') {
             </div>
             <div className="mb-4">
               <p className="text-sm font-medium mb-1" style={{ color: colors.antiquCopper }}>Provider</p>
-              <p className="text-lg font-medium" style={{ color: colors.charcoalInk }}>{selectedProvider}</p>
+              <p className="text-lg font-medium" style={{ color: colors.charcoalInk }}>{selectedProvider?.name}</p>
             </div>
             <div className="mb-4">
               <p className="text-sm font-medium mb-1" style={{ color: colors.antiquCopper }}>Description</p>
@@ -917,7 +917,7 @@ if (screen === 'pricing') {
               
               <div className="mb-3">
                 <p className="text-sm font-medium" style={{ color: colors.antiquCopper }}>Provider</p>
-                <p className="text-base" style={{ color: colors.charcoalInk }}>{selectedProvider}</p>
+                <p className="text-base" style={{ color: colors.charcoalInk }}>{selectedProvider?.name}</p>
               </div>
               
               <div className="mb-3">
