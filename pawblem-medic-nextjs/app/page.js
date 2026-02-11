@@ -166,8 +166,27 @@ export default function PawblemMedicApp() {
   const [uploadedFile, setUploadedFile] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedProvider, setSelectedProvider] = useState(null);
+  const [selectedPlan, setSelectedPlan] = useState(null);
   const [showProviderModal, setShowProviderModal] = useState(false);
   const [certificationModal, setCertificationModal] = useState(null);
+// Provider data
+const providerList = [
+  {
+    name: 'Sarah Mitchell, RVT',
+    bio: '8 years veterinary nursing, orthopedic recovery specialist',
+    badges: ['post-op', 'audit', 'er'],
+  },
+  {
+    name: 'Dr. James Chen',
+    bio: '12 years post-op care, specialized in surgical recovery',
+    badges: ['post-op', 'audit'],
+  },
+  {
+    name: 'Maria Rodriguez, CVT',
+    bio: '10 years experience, medication management expert',
+    badges: ['post-op', 'audit', 'er'],
+  },
+];
 
   // Certification Info Modal
   const CertificationModal = () => {
@@ -280,7 +299,51 @@ export default function PawblemMedicApp() {
   };
 
   // Provider Detail Modal
-  const ProviderDetailModal = () => (
+  const ProviderDetailModal = () => {
+  if (!selectedProvider) return null;
+
+  return (
+    <Modal isOpen={showProviderModal} onClose={() => setShowProviderModal(false)}>
+      <h2 className="text-3xl font-bold mb-4" style={{ color: colors.charcoalInk, fontFamily: "'Inter', sans-serif" }}>
+        {selectedProvider.name}
+      </h2>
+
+      <div className="mb-6">
+        {selectedProvider.badges.includes('post-op') && (
+          <Badge onClick={() => { setShowProviderModal(false); setCertificationModal('post-op'); }}>
+            Post-Op Certified
+          </Badge>
+        )}
+        {selectedProvider.badges.includes('audit') && (
+          <Badge variant="secondary" onClick={() => { setShowProviderModal(false); setCertificationModal('audit'); }}>
+            Audit-Enabled
+          </Badge>
+        )}
+        {selectedProvider.badges.includes('er') && (
+          <Badge variant="secondary" onClick={() => { setShowProviderModal(false); setCertificationModal('er'); }}>
+            ER Certified
+          </Badge>
+        )}
+      </div>
+
+      <div className="mb-8">
+        <p className="text-sm font-medium mb-2" style={{ color: colors.antiquCopper }}>Availability</p>
+        <p className="text-base" style={{ color: colors.charcoalInk }}>
+          Morning & Afternoon slots this week
+        </p>
+      </div>
+
+      <PrimaryButton
+        onClick={() => {
+          setShowProviderModal(false);
+          setScreen('pricing');
+        }}
+      >
+        Select Provider
+      </PrimaryButton>
+    </Modal>
+  );
+};
     <Modal isOpen={showProviderModal} onClose={() => setShowProviderModal(false)}>
       <h2 className="text-3xl font-bold mb-4" style={{ color: colors.charcoalInk, fontFamily: "'Inter', sans-serif" }}>
         Sarah Mitchell, RVT
@@ -635,6 +698,49 @@ export default function PawblemMedicApp() {
       </div>
     );
   }
+// Pricing Screen
+if (screen === 'pricing') {
+  return (
+    <div className="min-h-screen p-8 pb-24" style={{ backgroundColor: colors.warmSand }}>
+      <div className="max-w-md mx-auto pt-8">
+        <h2 className="text-4xl font-bold mb-3" style={{ color: colors.charcoalInk }}>
+          Select Service
+        </h2>
+
+        {[
+          { id: 'structured', name: 'Structured Recovery', price: 199.99 },
+          { id: 'advanced', name: 'Advanced Risk Control', price: 259.99 }
+        ].map(plan => (
+          <Card key={plan.id} onClick={() => setSelectedPlan(plan)}>
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className="text-xl font-bold" style={{ color: colors.charcoalInk }}>
+                  {plan.name}
+                </h3>
+              </div>
+              <div className="text-right">
+                <p className="text-2xl font-bold" style={{ color: colors.deepTerracotta }}>
+                  ${plan.price.toFixed(2)}
+                </p>
+              </div>
+            </div>
+          </Card>
+        ))}
+
+        <div className="mt-8">
+          <PrimaryButton
+            onClick={() => {
+              if (!selectedPlan) return;
+              setScreen('case-confirmation');
+            }}
+          >
+            Continue
+          </PrimaryButton>
+        </div>
+      </div>
+    </div>
+  );
+}
 
   // Case Confirmation Screen
   if (screen === 'case-confirmation') {
@@ -781,13 +887,16 @@ export default function PawblemMedicApp() {
             </button>
           </div>
 
-          {[
-            { name: 'Sarah Mitchell, RVT', bio: '8 years veterinary nursing, orthopedic recovery specialist' },
-            { name: 'Dr. James Chen', bio: '12 years post-op care, specialized in surgical recovery' },
-            { name: 'Maria Rodriguez, CVT', bio: '10 years experience, medication management expert' }
-          ].map((provider, idx) => (
+          {providerList.map((provider, idx) => (
             <Card key={idx}>
-              <div onClick={() => setShowProviderModal(true)} className="cursor-pointer">
+              <div
+  onClick={() => {
+    setSelectedProvider(provider);
+    setShowProviderModal(true);
+  }}
+  className="cursor-pointer"
+>
+
                 <h3 className="text-xl font-bold mb-2" style={{ color: colors.charcoalInk, fontFamily: "'Inter', sans-serif" }}>
                   {provider.name}
                 </h3>
@@ -804,7 +913,14 @@ export default function PawblemMedicApp() {
                 </Badge>
               </div>
               <p className="text-sm mb-4" style={{ color: colors.charcoalInk }}>{provider.bio}</p>
-              <div className="flex items-center justify-between cursor-pointer" onClick={() => setShowProviderModal(true)}>
+             <div
+  className="flex items-center justify-between cursor-pointer"
+  onClick={() => {
+    setSelectedProvider(provider);
+    setShowProviderModal(true);
+  }}
+>
+
                 <span className="text-sm font-medium" style={{ color: colors.deepTerracotta }}>View Profile</span>
                 <ChevronRight size={18} color={colors.deepTerracotta} />
               </div>
