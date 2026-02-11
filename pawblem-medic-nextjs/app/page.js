@@ -293,6 +293,9 @@ export default function PawblemMedicApp() {
         <Badge variant="secondary" onClick={() => { setShowProviderModal(false); setCertificationModal('audit'); }}>
           Audit-Enabled
         </Badge>
+        <Badge variant="secondary" onClick={() => { setShowProviderModal(false); setCertificationModal('er'); }}>
+          ER Certified
+        </Badge>
       </div>
 
       <div className="mb-6">
@@ -795,6 +798,9 @@ export default function PawblemMedicApp() {
                 </Badge>
                 <Badge variant="secondary" onClick={(e) => { e.stopPropagation(); setCertificationModal('audit'); }}>
                   Audit-Enabled
+                </Badge>
+                <Badge variant="secondary" onClick={(e) => { e.stopPropagation(); setCertificationModal('er'); }}>
+                 ER Certified
                 </Badge>
               </div>
               <p className="text-sm mb-4" style={{ color: colors.charcoalInk }}>{provider.bio}</p>
